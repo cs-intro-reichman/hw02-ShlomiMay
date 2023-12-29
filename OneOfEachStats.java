@@ -24,6 +24,48 @@ public class OneOfEachStats {
 		//// just like you had in the previous version, except that the 
 		//// randomization will be based on the given seed.
 		//// This is the only change that you have to do in the program.
-		    
+		
+		double total = 0;
+		int two = 0;
+		int three = 0;
+		int more = 0;
+		for (int tests = 1; tests <= T; tests++) {
+			int count = 0;
+			Boolean b = true;
+			Boolean g = true;
+			while (g||b) {
+				double rnd = generator.nextDouble();
+				if (rnd < 0.5) {
+					b = false;
+				} else {
+					g = false;
+				}
+				count++;
+			}
+			switch (count) {
+				case 2:
+					two++;
+					break;
+				case 3:
+					three++;
+					break;
+				default:
+					more++;
+			}
+			total += count;
+		}
+		double average = total / T;
+		System.out.println("Average: " + average + " children to get at least one of each gender");
+		System.out.println("Number of families with 2 children: " + two);
+		System.out.println("Number of families with 3 children: " + three);
+		System.out.println("Number of families with 4 or more children: " + more);
+		System.out.print("The most common number of children is ");
+		if (two >= three && two >= more) {
+			System.out.println("2");
+		} else if (three >= more) {
+			System.out.println("3");
+		} else {
+			System.out.println("4 or more");
+		}
 	}
 }
